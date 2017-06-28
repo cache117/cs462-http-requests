@@ -20,6 +20,20 @@ def redirect_on_query_strings():
         print("Location:http://facebook.com")
         print # to end the CGI response headers.
         
+def print_out_json(json):
+    print "Content-Type: application/json"
+    print "Cache-Control: no-cache"
+    print json
+    print
+        
+def check_accept_headers():
+    for headername, headervalue in os.environ.iteritems():
+        if headername.startswith("HTTP_ACCEPT"):
+            if headervalue == "application/vnd.byu.cs462.v1+json":
+                print_out_json("{\"version\": \"v1\"}")
+            if headervalue == "application/vnd.byu.cs462.v2+json":
+                print_out_json("{\"version\": \"v2\"}")
+        
 def print_html_body():
     print "Content-Type: text/html"
     print "Cache-Control: no-cache"
