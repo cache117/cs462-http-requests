@@ -58,4 +58,5 @@ def print_html_body():
     
 
 redirect_on_query_strings()
+check_accept_headers()
 print_html_body()
